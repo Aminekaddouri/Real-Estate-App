@@ -14,6 +14,7 @@ function Header() {
         setPageState("Sign in");
       }
     });
+    console.log(auth);
   }, [auth]);
   function pathMatchRoute(route) {
     if (route === location.pathname) {
