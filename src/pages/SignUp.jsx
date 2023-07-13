@@ -44,7 +44,8 @@ function SignUp() {
       // toast.success("Sign up was successful");
       navigate("/");
     } catch (error) {
-      toast.error("Something went wrong with the registration")
+     // toast.error("Something went wrong with the registration");
+      toast.error(error.toString().slice(25, -1));
     }
   }
 

@@ -1,6 +1,5 @@
 import {
   collection,
-  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -80,16 +79,13 @@ export default function Home() {
   useEffect(() => {
     async function fetchListings() {
       try {
-        // get reference
         const listingsRef = collection(db, "listings");
-        // create the query
         const q = query(
           listingsRef,
           where("type", "==", "sale"),
           orderBy("timestamp", "desc"),
           limit(4)
         );
-        // execute the query
         const querySnap = await getDocs(q);
         const listings = [];
         querySnap.forEach((doc) => {
@@ -109,7 +105,7 @@ export default function Home() {
     <div>
       <Slider />
       <div className="max-w-6xl mx-auto pt-4 space-y-6">
-        {offerListings && offerListings.length > 0 && (
+        {offerListings?.length ? (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Recent offers</h2>
             <Link to="/offers">
@@ -127,8 +123,8 @@ export default function Home() {
               ))}
             </ul>
           </div>
-        )}
-        {rentListings && rentListings.length > 0 && (
+        ) : null}
+        {rentListings?.length ? (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Places for rent</h2>
             <Link to="/category/rent">
@@ -146,8 +142,8 @@ export default function Home() {
               ))}
             </ul>
           </div>
-        )}
-        {saleListings && saleListings.length > 0 && (
+        ) : null}
+        {saleListings?.length ? (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Places for sale</h2>
             <Link to="/category/sale">
@@ -165,7 +161,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

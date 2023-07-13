@@ -53,7 +53,7 @@ export default function Listing() {
       <Swiper
         slidesPerView={1}
         navigation
-        pagination={{ type: "progressbar" }}
+        pagination={{type: "progressbar"}}
         effect="fade"
         modules={[EffectFade]}
         autoplay={{ delay: 3000 }}
@@ -137,7 +137,7 @@ export default function Listing() {
               {listing.furnished ? "Furnished" : "Not furnished"}
             </li>
           </ul>
-          {listing.userRef !== auth.currentUser?.uid && !contactLandlord && (
+          {listing.userRef !== auth.currentUser?.uid && !contactLandlord ? (
             <div className="mt-6">
               <button
                 onClick={() => setContactLandlord(true)}
@@ -146,10 +146,10 @@ export default function Listing() {
                 Contact Landlord
               </button>
             </div>
-          )}
-          {contactLandlord && (
+          ) : null}
+          {contactLandlord ? (
             <Contact userRef={listing.userRef} listing={listing} />
-          )}
+          ) : null}
         </div>
         <div className="w-full h-[200px] md:h-[400px] z-10 overflow-x-hidden mt-6 md:mt-0 md:ml-2">
         <MapContainer

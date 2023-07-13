@@ -12,7 +12,6 @@ import {
 import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
-import { async } from "@firebase/util";
 
 export default function Offers() {
   const [listings, setListings] = useState(null);
@@ -80,7 +79,7 @@ export default function Offers() {
       <h1 className="text-3xl text-center mt-6 font-bold mb-6">Offers</h1>
       {loading ? (
         <Spinner />
-      ) : listings && listings.length > 0 ? (
+        ) : listings?.length ? (
         <>
           <main>
             <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
@@ -93,7 +92,7 @@ export default function Offers() {
               ))}
             </ul>
           </main>
-          {lastFetchedListing && (
+          {lastFetchedListing ? (
             <div className="flex justify-center items-center">
               <button
                 onClick={onFetchMoreListings}
@@ -102,7 +101,7 @@ export default function Offers() {
                 Load more
               </button>
             </div>
-          )}
+          ) : null }
         </>
       ) : (
         <p>There are no current offers</p>
