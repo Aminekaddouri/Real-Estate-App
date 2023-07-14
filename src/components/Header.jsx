@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import svg from '../logo.png'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 function Header() {
   const [pageState, setPageState] = useState("Sign in");
@@ -26,9 +27,9 @@ function Header() {
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img
-            src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
+            src={svg}
             alt="logo"
-            className="h-5 cursor-pointer"
+            className="h-14 cursor-pointer"
             onClick={() => navigate("/")}
           />
         </div>
